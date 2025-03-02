@@ -9,6 +9,7 @@ import { SearchContext } from "../App";
 import { useDispatch, useSelector } from "react-redux";
 import { setCategoryId, setCurrentPage } from "../redux/slices/filterSlice";
 import { fetchPizzas } from "../redux/slices/pizzaSlice";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const Home = () => {
@@ -52,6 +53,7 @@ const Home = () => {
   }, [categoryId, sortType, searchValue, currentPage]);
 
   const pizzas = items.map((obj) => <PizzaBlock key={obj.id} {...obj} />);
+
   const skeletons = [...new Array(4)].map((_, index) => (
     <Skeleton key={index} />
   ));
