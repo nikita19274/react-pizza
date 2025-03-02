@@ -25,9 +25,15 @@ export const cartSlice = createSlice({
     },
     minusItem(state, action) {
       const findItem = state.items.find((obj) => obj.id == action.payload);
-      if (findItem) {
+      if (findItem && findItem.count > 1) {
         findItem.count--;
+      } else {
+        state.items = state.items.filter((obj) => obj.id !== action.payload); // Удаляем товар, если его количество = 1
       }
+      state.totalPrice = state.items.reduce(
+        (sum, obj) => obj.price * obj.count + sum,
+        0
+      ); // Пересчитываем общую цену
     },
     removeItem(state, action) {
       state.items = state.items.filter((obj) => obj.id !== action.payload);
@@ -38,6 +44,8 @@ export const cartSlice = createSlice({
     },
   },
 });
+
+export const selecCart = (state) => state.cart;
 
 export const { addItem, removeItem, clearItems, minusItem } = cartSlice.actions;
 
