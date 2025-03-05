@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setSort } from "../redux/slices/filterSlice";
+import { RootState } from "../redux/store";
 
 type SortItem = {
   name: string;
@@ -20,10 +21,10 @@ export const sortList: SortItem[] = [
 
 const Sort: React.FC = () => {
   const dispatch = useDispatch();
-  const sort = useSelector((state) => state.filter.sort);
+  const sort = useSelector((state: RootState) => state.filter.sort);
   const sortRef = useRef(null);
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   const onClickListItem = (obj: SortItem) => {
     dispatch(setSort(obj));

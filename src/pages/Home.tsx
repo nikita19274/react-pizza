@@ -23,9 +23,9 @@ const Home: React.FC = () => {
   const { items, status } = useSelector((state: RootState) => state.pizza);
   const { searchValue } = useContext(SearchContext);
 
-  const onChangeCategory = (id: number): void => {
+  const onChangeCategory = React.useCallback((id: number): void => {
     dispatch(setCategoryId(id));
-  };
+  }, []);
 
   const onChangePage = (number: number): void => {
     dispatch(setCurrentPage(number));

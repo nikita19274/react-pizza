@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useWhyDidYouUpdate } from "ahooks";
 
 type CategoriesProps = {
   value: number;
@@ -15,6 +16,7 @@ const categories = [
 ];
 
 const Categories: React.FC<CategoriesProps> = ({ value, onChangeCategory }) => {
+  useWhyDidYouUpdate("Categories", { value, onChangeCategory });
   return (
     <div className="categories">
       <ul>
